@@ -3,8 +3,26 @@ def main():
     text = get_book_text(book_path)
     num_words = get_num_words(text)
     num_chars = get_num_chars(text) 
-    print(f"{num_words} words found in the document!")
-    print(num_chars)
+    new_dict = dict_to_list(num_chars)
+    new_dict.sort(reverse=True, key=sort_on)
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{num_words} words found in the document!\n")
+#    print(new_dict)
+    for w in new_dict:
+        print(f"The '{w["name"]}' character was found {w["num"]} times")
+    print("--- End report ---")
+
+
+def sort_on(dict):
+    return dict["num"]
+
+def dict_to_list(num_chars):
+    list_of_dicts = []
+
+    for key, value in num_chars.items():
+        if key.isalpha():
+            list_of_dicts.append({"name": key, "num": value})
+    return list_of_dicts
 
 def get_num_words(text):
     words = text.split()
