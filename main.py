@@ -1,5 +1,5 @@
 def main():
-    book_path = "./books/frankenstein.txt"
+    book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
     num_words = get_num_words(text)
     num_chars = get_num_chars(text) 
@@ -7,7 +7,6 @@ def main():
     new_dict.sort(reverse=True, key=sort_on)
     print(f"--- Begin report of {book_path} ---")
     print(f"{num_words} words found in the document!\n")
-#    print(new_dict)
     for w in new_dict:
         print(f"The '{w["name"]}' character was found {w["num"]} times")
     print("--- End report ---")
