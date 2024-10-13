@@ -4,7 +4,6 @@ def main():
     num_words = get_num_words(text)
     num_chars = get_num_chars(text) 
     new_dict = dict_to_list(num_chars)
-    new_dict.sort(reverse=True, key=sort_on)
     print(f"--- Begin report of {book_path} ---")
     print(f"{num_words} words found in the document!\n")
     for w in new_dict:
@@ -17,18 +16,15 @@ def sort_on(dict):
 
 def dict_to_list(num_chars):
     list_of_dicts = []
-
     for key, value in num_chars.items():
         if key.isalpha():
             list_of_dicts.append({"name": key, "num": value})
+    list_of_dicts.sort(reverse=True, key=sort_on)
     return list_of_dicts
 
 def get_num_words(text):
     words = text.split()
-    counter = 0
-    for w in words:
-        counter += 1
-    return counter
+    return len(words) 
 
 def get_num_chars(text):
     words = text.split()
